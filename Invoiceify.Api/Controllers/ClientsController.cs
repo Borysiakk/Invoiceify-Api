@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Invoiceify.Api.Controllers
 {
-    
+    [Authorize]
     [ApiController]
     [Route("api/Clients")]
     public class ClientController :ControllerBase

@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Invoiceify.Domain.Contract.Requests;
 using Invoiceify.Domain.Entities;
 using Invoiceify.Infrastructure.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Invoiceify.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Invoice")]
     public class InvoiceController :ControllerBase

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Invoiceify.Domain.Contract.Requests;
 using Invoiceify.Domain.Entities;
 using Invoiceify.Infrastructure.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,7 @@ namespace Invoiceify.Api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody]LoginModelView login)
         {
@@ -42,6 +44,7 @@ namespace Invoiceify.Api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("Register")]
         public async Task<IActionResult> Register(RegisterViewModel register)
         {
@@ -60,35 +63,5 @@ namespace Invoiceify.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,e.Message);
             }
         }
-
-        [HttpGet]
-        [Route("RegisterTest")]
-        public async Task<IActionResult> RegisterTest()
-        {
-            RegisterViewModel registerViewModel = new RegisterViewModel()
-            {
-                Email = "szymaborys@gmail.com",
-                Password = "Szyma59@@",
-                ConfirmPassword = "Szyma59@@",
-            };
-
-            var result = await _identityService.RegisterAsync(registerViewModel);
-
-            return Ok("OK");
-        }
-
-        [HttpGet("TOKEN")]
-        public ActionResult<string> Token()
-        {
-            ApplicationUser user = new ApplicationUser()
-            {
-                Id = "34324234",
-                Email = "Test@gmail.com",
-                UserName = "TEST",
-            };
-
-            return Ok(_tokenService.Generate(user));
-        }
-        
     }
 }

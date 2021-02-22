@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Invoiceify.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Products")]
     public class ProductsController: ControllerBase
