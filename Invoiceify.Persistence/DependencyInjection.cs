@@ -7,7 +7,7 @@ namespace Invoiceify.Persistence
 {
     public static class DependencyInjection
     {
-        public static string DbConnection = @"Server=(l-ocaldb)\Invoiceify;Database=Invoiceify;Trusted_Connection=True;MultipleActiveResultSets=true";
+        public static string DbConnection = @"Server=(localdb)\Invoiceify;Database=Invoiceify;Trusted_Connection=True;MultipleActiveResultSets=true";
         public static IServiceCollection AddPersistence(this IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(DbConnection));
